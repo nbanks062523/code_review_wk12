@@ -3,3 +3,4 @@ plugins/
 .env
 dsa-airflow/data/*.csv
 data/*.csv
+ep12venv
