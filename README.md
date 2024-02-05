@@ -48,7 +48,12 @@ In this project, Airflow was used to orchestrate a workflow that did the followi
   4. type "docker volume list" to confirm that there are no volumes
    
 # Known Bugs
-No known bugs
+The following errors occurred while running the DAG in Airflow
+
+![Image](https://github.com/nbanks062523/code_review_wk12/blob/1e5c521a2ec455adc3d7186542dde3d6b095fcbd/Week12_ErrorMsg1.png)
+
+![Image](https://github.com/nbanks062523/code_review_wk12/blob/1e5c521a2ec455adc3d7186542dde3d6b095fcbd/Week12_ErrorMsg2.png)
+
 
 # Project Visuals
 ## DAG 
