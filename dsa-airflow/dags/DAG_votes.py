@@ -41,7 +41,7 @@ def read_file():
     # read csv
     df = pd.read_csv(file_path, header=1)
         
-    for i in df['flavor']:
+    for i in df['votes']:
         if i in flavors_choices:
             valid_choices.append(i)
     return valid_choices
@@ -82,7 +82,7 @@ def file_sensor_dag():
 
     # read the file
     read_file_task = read_file()
-    tally_votes_task = tally_votes(read_file_task.output)
+    tally_votes_task = tally_votes(read_file_task)
     
     # orchestrate tasks
     wait_for_file >> read_file_task >> tally_votes_task
