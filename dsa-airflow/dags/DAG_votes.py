@@ -17,7 +17,7 @@ VOTES_FILE = 'votes.csv'
 # list of flavors
 flavors_choices = ["lemon","vanilla","chocolate","pistachio","strawberry","confetti","caramel","pumpkin","rose"]
 
-# This task will reads each row in the  the votes csv file and checks whether the value is in a given 
+# This task will read each row in the votes csv file and checks whether the value is in a given 
 # list of flavor choices. If it is in the list then it appends it to a new list 
 @task
 def read_file():
@@ -69,24 +69,24 @@ def tally_votes(valid_choices):
     tags=['votes', 'cake flavors'],
 )
 def file_sensor_dag():
-    """Example of using FileSensors and FileSystem Connections"""
-
+    
     # define the file sensor...
-    # wait for the airports file in the "data_fs" filesystem connection
+    # wait for the votes file in the "data_fs" filesystem connection
     wait_for_file = FileSensor(
         task_id='wait_for_file',
         poke_interval=15,                   # check every 15 seconds
-        timeout=(30 * 60),                  # timeout after 30 minutes
+        timeout=(10 * 60),                  # timeout after 10 minutes
         mode='poke',                        # mode: poke, reschedule
-        filepath=AIRPORTS_FILE_NAME,        # file path to check (relative to fs_conn)
+        filepath = VOTES_FILE,        # file path to check (relative to fs_conn)
         fs_conn_id='data_fs',               # file system connection (root path)
     )
 
     # read the file
     read_file_task = read_file()
+    tally_votes_task = tally_votes()
     
     # orchestrate tasks
-    wait_for_file >> read_file_task
+    wait_for_file >> read_file_task >> tally_votes_task
 
 
 # create the dag
