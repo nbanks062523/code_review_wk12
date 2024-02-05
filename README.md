@@ -57,12 +57,12 @@ The DAG Diagram in this project shows the order of tasks and their dependencies,
   2. The second task is the 'Read_file_task', this task is a Python Operator task that will read each row in the votes csv file and check whether the value is in a given list called flavors_choices and appends it to a new list
   3. The third task is also a Python Operator task that takes the list from the previous task and prints the item that appears the most
      
-![Image](https://github.com/nbanks062523/code_review_wk11/blob/fffd5436dbf8f7d58b23bf60fd830c77589de8e1/DAG.png)
+![Image](https://github.com/nbanks062523/code_review_wk12/blob/e98d628a7965382230a8f601a5d8ec97f9bc17bf/Week12_DAGOutput.png)
 ---
 ## DAG Final Outcome
-As shown in the image the 'echo_to_file' task was successful on every run. The remainder of the tasks failed on 3 out of 4 runs, this was due to the functions having an incorrect parameter listed. This was corrected by leaving the parenthesis empty.
+As shown in the image the DAG failed after 3 attempts. 
 
-![Image](https://github.com/nbanks062523/code_review_wk11/blob/fffd5436dbf8f7d58b23bf60fd830c77589de8e1/FinalDAGOutcome.png)
+![Image](https://github.com/nbanks062523/code_review_wk12/blob/e98d628a7965382230a8f601a5d8ec97f9bc17bf/Week12_DAGOutput2.png)
 ---
 
 # License
