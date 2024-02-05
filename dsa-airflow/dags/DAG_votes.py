@@ -27,7 +27,7 @@ def read_file():
     This function uses an Airflow FileSystem Connection called "data_fs" as the root folder
     to look for the votes file. Make sure this FileSystem connection exists
     """
-        
+            
  # get the data_fs filesystem root path
     data_fs = FSHook(conn_id='data_fs')     # get airflow connection for data_fs
     data_dir = data_fs.get_path()           # get its root path
@@ -38,11 +38,10 @@ def read_file():
     print(f"reading file: {file_path}")
     
     valid_choices=[]
-    
     # read csv
     df = pd.read_csv(file_path, header=1)
-    
-    for i in VOTES_FILE:
+        
+    for i in df['flavor']:
         if i in flavors_choices:
             valid_choices.append(i)
     return valid_choices
@@ -83,11 +82,9 @@ def file_sensor_dag():
 
     # read the file
     read_file_task = read_file()
-    tally_votes_task = tally_votes()
+    tally_votes_task = tally_votes(read_file_task.output)
     
     # orchestrate tasks
     wait_for_file >> read_file_task >> tally_votes_task
-
-
 # create the dag
-dag = dsa_example_file_sensor()
+dag = file_sensor_dag()
