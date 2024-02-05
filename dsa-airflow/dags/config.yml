@@ -1,0 +1,6 @@
+# google cloud config
+project: debweek7-nb
+dataset: sandbox
+
+# data files
+flavor_votes_data: votes.csv
